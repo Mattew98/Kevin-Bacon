@@ -14,7 +14,7 @@ def datawrite():
         People.append(person)
         i+=1
 
-    #Adding new people to database
+    #Adding new people to 'peopledata.csv'
 
     with open('peopledata.csv',newline='') as data:
         storedpeople = []
@@ -26,19 +26,19 @@ def datawrite():
             if person not in storedpeople:
                 with open('peopledata.csv','a',newline='\n') as data:
                     writer = csv.writer(data,delimiter=',')
-                    writer.writerow([str('-')]+[person])
+                    writer.writerow([str('-')]+[person]) #add a hyphon before the person name so python reads the csv row as an array and doesn't index through the string
 
-    #Adding new pictures to database       
+    #Adding new pictures to 'picturedata.csv'       
 
     with open('picturedata.csv','a',newline='\n') as data:
         reader=csv.reader(data,delimiter=',')
         writer=csv.writer(data,delimiter=',')
-        writer.writerow([Number]+[Path]+People)
+        writer.writerow([Number]+[Path]+People) #Data stored as |Number of people in picture|Picture's file path|Person|Person|Person...
 
 loops = input("How many pictures to add?\n")
 
 j = 0
 
-while j<int(loops):
+while j<int(loops): #repeat script to bulk-add pictures
     datawrite()
     j+=1
